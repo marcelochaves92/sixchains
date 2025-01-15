@@ -78,12 +78,15 @@
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn
-                        color="#591F31"
+                        color="red darken-1"
                         variant="tonal"
                         @click="showEditDialog = false"
                         >Cancelar</v-btn
                     >
-                    <v-btn color="#1F5931" variant="tonal" @click="confirmEdit"
+                    <v-btn
+                        color="success darken-1"
+                        variant="tonal"
+                        @click="confirmEdit"
                         >Salvar</v-btn
                     >
                 </v-card-actions>

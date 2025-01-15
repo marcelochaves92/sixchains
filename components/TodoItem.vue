@@ -27,13 +27,9 @@
                 <v-icon>mdi-delete</v-icon>
             </v-btn>
         </v-card-actions>
-
-        <v-dialog v-model="showDeleteDialog" max-width="500">
-            <v-card>
-                <v-card-title
-                    class="headline"
-                    style="background-color: #312059; color: white"
-                >
+        <v-dialog v-model="showDeleteDialog" max-width="500" persistent>
+            <v-card color="#312059">
+                <v-card-title class="headline">
                     Confirmar exclusão
                 </v-card-title>
                 <v-card-text>
@@ -44,12 +40,16 @@
                     <v-spacer></v-spacer>
                     <v-btn
                         color="#FF9823"
-                        text
+                        variant="tonal"
                         @click="showDeleteDialog = false"
                     >
                         Cancelar
                     </v-btn>
-                    <v-btn color="red darken-1" text @click="confirmRemoveTodo">
+                    <v-btn
+                        color="red darken-1"
+                        variant="tonal"
+                        @click="confirmRemoveTodo"
+                    >
                         Excluir
                     </v-btn>
                 </v-card-actions>
