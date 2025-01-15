@@ -1,0 +1,9 @@
+@media (max-width: 600px) {
+    .search-field {
+        display: none;
+    }
+}
+
+.search-field {
+    max-width: 300px;
+}

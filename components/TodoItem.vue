@@ -5,10 +5,12 @@
                 class="d-flex justify-space-between align-center flex-wrap"
                 style="width: 100%"
             >
-                <div>
+                <div class="flex-grow-1">
                     <h3>{{ todo.name }}</h3>
                     <p v-if="!todo.lastModified">{{ formattedDate }}</p>
-                    <p v-else>Última alteração: {{ formattedLastModified }}</p>
+                    <p v-else class="text-wrap">
+                        Última alteração: {{ formattedLastModified }}
+                    </p>
                 </div>
                 <v-chip
                     :color="statusColor"
@@ -78,22 +80,26 @@ export default {
     },
     computed: {
         formattedDate() {
-            return new Date(this.todo.timestamp).toLocaleString("pt-BR", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-            });
+            return new Date(this.todo.timestamp)
+                .toLocaleString("pt-BR", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                })
+                .replace(",", "");
         },
         formattedLastModified() {
-            return new Date(this.todo.lastModified).toLocaleString("pt-BR", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-            });
+            return new Date(this.todo.lastModified)
+                .toLocaleString("pt-BR", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                })
+                .replace(",", "");
         },
         statusColor() {
             switch (this.todo.status) {
@@ -122,8 +128,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.white-text {
-    color: white !important;
-}
-</style>
+<style src="../assets/styles/todo-item.css"></style>

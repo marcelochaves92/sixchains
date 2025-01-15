@@ -4,12 +4,23 @@
             <v-col cols="12" md="8">
                 <v-card class="pa-5" color="#312059">
                     <v-card-title>
-                        <div class="text-center mb-4">
+                        <div
+                            class="d-flex justify-space-between align-center"
+                            style="width: 100%"
+                        >
                             <img
                                 src="../assets/logo.webp"
                                 alt="Logo"
                                 style="max-width: 150px"
                             />
+                            <v-text-field
+                                v-model="searchQuery"
+                                label="Buscar tarefa"
+                                variant="outlined"
+                                color="#FF9823"
+                                hide-details
+                                class="search-field"
+                            ></v-text-field>
                         </div>
                     </v-card-title>
                     <v-card-text>
@@ -58,7 +69,7 @@
         <v-row justify="center">
             <v-col cols="12" md="8">
                 <TodoItem
-                    v-for="(todo, index) in todos"
+                    v-for="(todo, index) in filteredTodos"
                     :key="index"
                     :todo="todo"
                     :index="index"
@@ -113,11 +124,17 @@ export default {
             editingIndex: null,
             statusOptions: ["Não iniciada", "Em andamento", "Finalizado"],
             showEditDialog: false,
+            searchQuery: "",
         };
     },
     computed: {
         todoStore() {
             return useTodoStore();
+        },
+        filteredTodos() {
+            return this.todos.filter((todo) =>
+                todo.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+            );
         },
     },
     async mounted() {
@@ -169,3 +186,5 @@ export default {
     },
 };
 </script>
+
+<style src="../assets/styles/index.css"></style>
